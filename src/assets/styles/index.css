@@ -23,6 +23,7 @@
 @layer base {
     :root {
         font-size: 16px;
+        @apply max-sm:text-[14px];
         font-family: "Red Hat Text", Montserrat, Poppins, sans-serif;
     }
 
@@ -36,5 +37,25 @@
         display: flex; column-gap: 2rem;
         @apply max-mobile:flex-col;
         justify-content: space-between;
+    }
+}
+
+@layer components {
+    .btn-quantity-hover:is(:hover, :active) {
+        background-color: white;
+        cursor: pointer;
+        path {
+            fill: var(--color-primary-red);
+        }
+    }
+    .btn-cross-hover:is(:hover, :active) {
+        border-color: var(--color-primary-rose-900) !important;
+        cursor: pointer;
+        path {
+            fill: var(--color-primary-rose-900) !important;
+        }
+    }
+    .btn-order {
+        @apply w-full h-10 rounded-full mt-8 bg-primary-red text-white font-regular cursor-pointer;
     }
 }
