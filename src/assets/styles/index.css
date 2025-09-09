@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme base {
+    /*Colors*/
+    --color-primary-red: hsl(14, 86%, 42%);
+    --color-primary-green: hsl(159, 69%, 38%);
+
+    --color-primary-rose-50: hsl(20, 50%, 98%);
+    --color-primary-rose-100: hsl(13, 31%, 94%);
+    --color-primary-rose-300: hsl(14, 25%, 72%);
+    --color-primary-rose-400: hsl(7, 20%, 60%);
+    --color-primary-rose-500: hsl(12, 20%, 44%);
+    --color-primary-rose-900: hsl(14, 65%, 9%);
+
+
+    /*Font*/
+    --font-weight-lighter: 400;
+    --font-weight-regular: 600;
+    --font-weight-bolder: 700;
+
+    --breakpoint-mobile: 768px;
+}
+@layer base {
+    :root {
+        font-size: 16px;
+        font-family: "Red Hat Text", Montserrat, Poppins, sans-serif;
+    }
+
+    body {
+        min-width: 100vw; min-height: 100vh;
+        background-color: var(--color-primary-rose-50);
+    }
+    #root {
+        max-width: 1440px; min-height: inherit;
+        padding-inline: 2rem; padding-block: 2rem;
+        display: flex; column-gap: 2rem;
+        @apply max-mobile:flex-col;
+        justify-content: space-between;
+    }
+}
