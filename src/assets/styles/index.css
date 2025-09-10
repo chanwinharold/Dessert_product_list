@@ -37,6 +37,7 @@
         display: flex; column-gap: 2rem;
         @apply max-mobile:flex-col;
         justify-content: space-between;
+        margin: auto;
     }
 }
 

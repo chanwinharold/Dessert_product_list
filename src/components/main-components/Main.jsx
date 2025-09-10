@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Dessert from "../sub-components/Dessert.jsx";
+import {DessertContext} from "../../contexts/DessertContext.js";
 
 function Main() {
     const [Desserts, setDesserts] = useState([])
+    const [dessertState, setDessertState] = useContext(DessertContext)
 
     useEffect(() => {
         const handleFetch = async () => {
