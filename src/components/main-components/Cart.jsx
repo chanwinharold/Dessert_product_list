@@ -7,7 +7,7 @@ import CartItem from "../sub-components/CartItem.jsx";
 
 function Cart() {
     const count= 0
-    const condition = true
+    const condition = false
     const total = 46.50
 
     return (
@@ -24,7 +24,7 @@ function Cart() {
                         {
                             <CartItem />
                         }
-                        <div className={"flex justify-between gap-x-8 py-6"}>
+                        <div className={"flex justify-between items-center gap-x-8 py-6"}>
                             <span className={"text-primary-rose-500 font-lighter"}>Order Total</span>
                             <strong className={"text-primary-rose-900 text-2xl"}>${total.toFixed(2)}</strong>
                         </div>

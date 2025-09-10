@@ -5,7 +5,7 @@ function Order() {
     const total = 46.50
 
     return (
-        <div className={"max-w-[500px] w-full h-fit rounded-lg bg-white p-8 absolute z-20 top-10 left-10"}>
+        <div className={"max-w-[500px] w-full h-fit rounded-lg bg-white p-8 absolute z-20 min-[460px]:top-[50%] min-[460px]:left-[50%] min-[460px]:-translate-1/2 max-[460px]:top-24 max-[460px]:left-0 max-[460px]:right-0"}>
             <div>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path className={"fill-primary-green"} d="M21 32.121L13.5 24.6195L15.6195 22.5L21 27.879L32.3775 16.5L34.5 18.6225L21 32.121Z"/>
@@ -16,8 +16,7 @@ function Order() {
             </div>
             <div className={"w-full p-8 rounded-lg bg-primary-rose-100"}>
                 <OrderItem />
-                <OrderItem />
-                <div className={"flex justify-between gap-x-8 py-4"}>
+                <div className={"flex justify-between items-center gap-x-8 py-4"}>
                     <span className={"text-primary-rose-500 font-lighter"}>Order Total</span>
                     <strong className={"text-primary-rose-900 text-2xl"}>${total.toFixed(2)}</strong>
                 </div>

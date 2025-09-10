@@ -28,7 +28,7 @@
     }
 
     body {
-        min-width: 100vw; min-height: 100vh;
+        min-height: 100vh;
         background-color: var(--color-primary-rose-50);
     }
     #root {
@@ -56,6 +56,6 @@
         }
     }
     .btn-order {
-        @apply w-full h-10 rounded-full mt-8 bg-primary-red text-white font-regular cursor-pointer;
+        @apply w-full h-10 rounded-full mt-8 bg-primary-red hover:opacity-85 text-white font-regular cursor-pointer;
     }
 }

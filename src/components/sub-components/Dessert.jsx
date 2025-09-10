@@ -2,21 +2,18 @@ import React from 'react';
 import AddToCartButton from "./AddToCartButton.jsx";
 import HandlerPurchaseButton from "./HandlerPurchaseButton.jsx";
 
-// Image Import
-import dessertImage from "/assets/images/image-brownie-desktop.jpg"
-
-function Dessert() {
-
-    const buttonState = false
-    const name = "Salted Caramel Brownie"
-    const price = 5.5
-    const category = "Brownie"
+function Dessert({image, name, price, category}) {
+    const value = true
 
     return (
-        <div className={"max-w-[275px] pb-4"}>
+        <div className={"max-w-[270px] pb-4"}>
             <div className={"relative"}>
-                <img className={"w-[275px] rounded-xl"} src={dessertImage} alt={"Dessert picture"}/>
-                {buttonState ? <AddToCartButton /> : <HandlerPurchaseButton />}
+                <picture>
+                    <source srcSet={image.desktop} media={"(min-width: 1068px)"} />
+                    <source srcSet={image.tablet} media={"(min-width: 768px)"} />
+                    <img className={"w-[270px] rounded-xl object-cover"} src={image.mobile} alt={"Dessert picture"}/>
+                </picture>
+                {value ? <AddToCartButton /> : <HandlerPurchaseButton />}
             </div>
             <div className={"flex flex-col mt-12"}>
                 <span className={"text-primary-rose-500 font-lighter"}>{category}</span>
