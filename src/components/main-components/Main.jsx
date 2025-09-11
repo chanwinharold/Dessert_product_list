@@ -1,10 +1,38 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Dessert from "../sub-components/Dessert.jsx";
-import {DessertContext} from "../../contexts/DessertContext.js";
 
 function Main() {
     const [Desserts, setDesserts] = useState([])
-    const [dessertState, setDessertState] = useContext(DessertContext)
+    const [btnStateList, setBtnStateList] = useState({})
+    const [counterList, setCounterList] = useState({})
+
+    const handleIncrement = (id) => {
+        setCounterList(prevState => ({
+            ...prevState,
+            [id]: prevState[id] ? prevState[id]+1 : 1
+        }))
+    }
+    const handleDecrement = (id) => {
+        if (counterList[id]===1) {
+            setBtnStateList(prevState => ({
+                ...prevState,
+                [id]: false
+            }))
+        }
+
+        setCounterList(prevState => ({
+            ...prevState,
+            [id]: (prevState[id] && prevState[id] > 0) ? prevState[id]-1 : 1
+        }))
+    }
+    const handleBtnState = (id) => {
+        handleIncrement(id)
+        setBtnStateList(prevState => ({
+            ...prevState,
+            [id]: true
+        }))
+    }
+
 
     useEffect(() => {
         const handleFetch = async () => {
@@ -27,6 +55,7 @@ function Main() {
                                 name={name}
                                 category={category}
                                 price={price}
+                                allState={[btnStateList[index], () => handleBtnState(index), counterList[index], () => handleIncrement(index), () => handleDecrement(index)]}
                             />
                         ))
                     ) : (

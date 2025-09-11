@@ -1,12 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import AddToCartButton from "./AddToCartButton.jsx";
 import HandlerPurchaseButton from "./HandlerPurchaseButton.jsx";
 
-function Dessert({image, name, price, category}) {
-    const [buttonState, setButtonState] = useState(true)
-    const [counter, setCounter] = useState(1)
-
-    if (counter===0) {setButtonState(true); setCounter(1)}
+function Dessert({image, name, price, category, allState}) {
+    const [btnState, handleBtnState, counter, onIncrement, onDecrement] = allState
 
     return (
         <div className={"max-w-[270px] pb-4"}>
@@ -16,9 +13,9 @@ function Dessert({image, name, price, category}) {
                     <source srcSet={image.tablet} media={"(min-width: 768px)"} />
                     <img className={"w-[270px] rounded-xl object-cover"} src={image.mobile} alt={"Dessert picture"}/>
                 </picture>
-                {buttonState
-                    ? <AddToCartButton handlerState={setButtonState} />
-                    : <HandlerPurchaseButton values={[counter, setCounter]} />
+                {btnState
+                    ? <HandlerPurchaseButton counterState={[counter, onIncrement, onDecrement]} />
+                    : <AddToCartButton handlerState={handleBtnState} />
                 }
             </div>
             <div className={"flex flex-col mt-12"}>
