@@ -1,9 +1,6 @@
 import React from 'react';
 
-function CartItem() {
-    const name = "Classic Tiramisu"
-    const count = 1
-    const price = 5.50
+function CartItem({name, count, price}) {
 
     return (
         <div className={"w-full py-4 flex justify-between items-center gap-x-4 border-b border-b-primary-rose-300"}>

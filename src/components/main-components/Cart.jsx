@@ -1,18 +1,26 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 
 // Images Import
 import emptyCart from "../../assets/images/illustration-empty-cart.svg"
 
 import CartItem from "../sub-components/CartItem.jsx";
+import {DessertContext} from "../../contexts/DessertContext.js";
 
 function Cart() {
-    const count= 0
-    const condition = false
-    const total = 46.50
+    const [dessertState, setDessertState, counterList, setCounterList, id, setId] = useContext(DessertContext)
+    const total = 46.5
+
+    let condition = true
+
+    Object.values(counterList).forEach(value => condition *= value===0)
+
+    // useEffect(() => {
+    //     console.log(dessertState, counterList, id)
+    // }, [counterList, dessertState, id]);
 
     return (
         <aside className={"max-mobile:self-center xl:flex-1 bg-white rounded-lg max-w-[400px] w-full min-h-[280px] h-fit p-8"}>
-            <h2 className={"text-primary-red mb-4 text-xl font-bolder"}>Your cart ({count})</h2>
+            <h2 className={"text-primary-red mb-4 text-xl font-bolder"}>Your cart ({0})</h2>
             {
                 condition ? (
                     <div className={"w-full mt-6 inline-grid place-items-center gap-y-6"}>
@@ -22,7 +30,14 @@ function Cart() {
                 ) : (
                     <div>
                         {
-                            <CartItem />
+                            dessertState.map((dessert, index) => counterList[index] ? (
+                                <CartItem
+                                    key={`${index}-${dessert.name}-${Math.random()}`}
+                                    name={dessert.name}
+                                    count={counterList[index]}
+                                    price={dessert.price}
+                                />
+                            ):null)
                         }
                         <div className={"flex justify-between items-center gap-x-8 py-6"}>
                             <span className={"text-primary-rose-500 font-lighter"}>Order Total</span>

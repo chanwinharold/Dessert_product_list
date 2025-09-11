@@ -6,10 +6,12 @@ import Cart from "./components/main-components/Cart.jsx";
 import {DessertContext} from "./contexts/DessertContext.js"
 
 function App() {
-    const [dessertState, setDessertState] = useState([])
+    const [dessertState, setDessertState] = useState(null)
+    const [counterList, setCounterList] = useState({})
+    const [id, setId] = useState()
 
     return (
-        <><DessertContext.Provider value={[dessertState, setDessertState]}>
+        <><DessertContext.Provider value={[dessertState, setDessertState, counterList, setCounterList, id, setId]}>
             <Main />
             <Cart />
 
