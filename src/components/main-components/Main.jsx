@@ -4,9 +4,7 @@ import {DessertContext} from "../../contexts/DessertContext.js";
 
 function Main() {
     const [Desserts, setDesserts] = useState(null)
-    const [btnStateList, setBtnStateList] = useState({})
-
-    const [_, setDessertState, counterList, setCounterList, id, setId] = useContext(DessertContext)
+    const {setDessertState, counterList, setCounterList, setId, btnStateList, setBtnStateList} = useContext(DessertContext)
 
     const handleIncrement = (id) => {
         setCounterList(prevState => ({
@@ -68,7 +66,7 @@ function Main() {
             </div>
         </main>
     ) : (
-        <p className={"w-full text-3xl inline-grid place-items-center"}>Loading...</p>
+        <p className={"w-1/2 text-3xl inline-grid place-items-center"}>Loading...</p>
     );
 }
 

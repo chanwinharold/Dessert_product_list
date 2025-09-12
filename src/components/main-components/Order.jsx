@@ -1,11 +1,24 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import OrderItem from "../sub-components/OrderItem.jsx";
+import {DessertContext} from "../../contexts/DessertContext.js";
 
 function Order() {
-    const total = 46.50
+    const {dessertState, counterList, setBlur, setCounterList, setBtnStateList, setId} = useContext(DessertContext)
 
-    return (
-        <div className={"max-w-[500px] w-full h-fit rounded-lg bg-white p-8 absolute z-20 min-[460px]:top-[50%] min-[460px]:left-[50%] min-[460px]:-translate-1/2 max-[460px]:top-24 max-[460px]:left-0 max-[460px]:right-0"}>
+    const handleStartNewOrder = () => {
+        setBlur(false)
+        setCounterList({})
+        setBtnStateList({})
+        setId()
+    }
+
+    let total = 0
+    Object.entries(counterList).forEach(([key, value]) => {
+        total += value ? (value * dessertState[key].price) : 0
+    })
+
+    return dessertState && (
+        <div className={"max-w-[450px] w-full h-[calc(100vh-5rem)] overflow-y-auto rounded-lg bg-white p-8 fixed z-20 min-[460px]:top-[50%] min-[460px]:left-[50%] min-[460px]:-translate-1/2 max-[460px]:top-24 max-[460px]:left-0 max-[460px]:right-0"}>
             <div>
                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path className={"fill-primary-green"} d="M21 32.121L13.5 24.6195L15.6195 22.5L21 27.879L32.3775 16.5L34.5 18.6225L21 32.121Z"/>
@@ -14,14 +27,24 @@ function Order() {
                 <h2 className={"mt-4 text-primary-rose-900 text-3xl font-bolder"}>Order confirmed</h2>
                 <p className={"text-sm text-primary-rose-500 mt-2 mb-8 font-lighter"}>We hope you enjoy your food!</p>
             </div>
-            <div className={"w-full p-8 rounded-lg bg-primary-rose-100"}>
-                <OrderItem />
+            <div className={"w-full h-[200px] overflow-y-auto p-8 rounded-lg bg-primary-rose-100"}>
+                {
+                    dessertState.map((dessert, index) => counterList[index] ? (
+                        <OrderItem
+                            key={`${index}-${dessert.name}-${Math.random()}`}
+                            name={dessert.name}
+                            count={counterList[index]}
+                            price={dessert.price}
+                            image={dessert.image}
+                        />
+                    ):null)
+                }
                 <div className={"flex justify-between items-center gap-x-8 py-4"}>
                     <span className={"text-primary-rose-500 font-lighter"}>Order Total</span>
                     <strong className={"text-primary-rose-900 text-2xl"}>${total.toFixed(2)}</strong>
                 </div>
             </div>
-            <button className={"btn-order"}>Start New Order</button>
+            <button onClick={handleStartNewOrder} className={"btn-order"}>Start New Order</button>
         </div>
     );
 }

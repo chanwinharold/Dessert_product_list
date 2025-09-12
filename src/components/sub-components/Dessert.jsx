@@ -11,7 +11,7 @@ function Dessert({image, name, price, category, allState}) {
                 <picture>
                     <source srcSet={image.desktop} media={"(min-width: 1068px)"} />
                     <source srcSet={image.tablet} media={"(min-width: 768px)"} />
-                    <img className={"w-[270px] rounded-xl object-cover"} src={image.mobile} alt={"Dessert picture"}/>
+                    <img className={`w-[270px] rounded-xl object-cover ${btnState ? "bordered" : ""}`} src={image.mobile} alt={"Dessert picture"}/>
                 </picture>
                 {btnState
                     ? <HandlerPurchaseButton counterState={[counter, onIncrement, onDecrement]} />

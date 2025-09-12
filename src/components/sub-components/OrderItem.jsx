@@ -1,17 +1,12 @@
 import React from 'react';
 
-// Images Import
-import dessertImage from "/assets/images/image-brownie-desktop.jpg"
 
-function OrderItem() {
-    const name = "Classic Tiramisu"
-    const count = 1
-    const price = 5.50
+function OrderItem({name, count, price, image}) {
 
     return (
         <div className={"w-full py-4 flex justify-between items-center gap-x-4 border-b border-b-primary-rose-300"}>
             <div className={"flex gap-x-2"}>
-                <img className={"w-[50px] h-[50px] rounded-md"} src={dessertImage} alt={"Dessert image"}/>
+                <img className={"w-[50px] h-[50px] rounded-md"} src={image.thumbnail} alt={"Dessert image"}/>
                 <div className={"flex flex-col gap-y-1"}>
                     <strong className={"text-primary-rose-900 font-regular"}>{name}</strong>
                     <div className={"flex gap-x-4"}>
